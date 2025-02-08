@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "pkg",
+    srcs = ["foo.go"],
+    importpath = "github.com/Sengoku11/bazel-monorepo/libs/go/baz/foo/pkg",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "foo",
+    srcs = ["foo.go"],
+    importpath = "",
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,55 @@
+# .golangci.yaml
+# GolangCI-Lint configuration following 2024 best practices
+
+run:
+  timeout: 5m
+  tests: true
+  concurrency: 4
+
+issues:
+  # Exclude directories that are not part of your source code.
+  exclude-dirs:
+    - vendor
+    - third_party
+    - bazel-bin
+    - bazel-out
+    - bazel-testlogs
+  # Exclude files such as generated files.
+  exclude-files:
+    - ".*_generated.go"
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude-use-default: false
+
+linters:
+  # Enable all available linters.
+  enable-all: true
+  # Disable linters that are deprecated or not needed.
+  disable:
+    - structcheck      # Deprecated; replaced by unused.
+    - varcheck         # Deprecated; replaced by unused.
+    - deadcode         # Deprecated; replaced by unused.
+    - scopelint        # Deprecated.
+    - ifshort          # Deprecated.
+    - exhaustivestruct # Deprecated.
+    - interfacer       # Deprecated.
+    - maligned         # Deprecated; use govet's fieldalignment instead.
+    - nosnakecase      # Deprecated; use revive's var-naming instead.
+    - golint           # Deprecated; use revive instead.
+    - gomodguard       # Causes errors if no go.mod is in the working directory.
+
+linters-settings:
+  govet:
+    # Enable shadow checking (replacing the deprecated check-shadowing).
+    shadow: true
+
+output:
+  # Although output.format is deprecated, some versions still require it.
+  format: colored-line-number
+  # The new key for specifying output format.
+  formats:
+    - type: colored-line-number
+
+cache:
+  enabled: true
+  dir: ~/.cache/golangci-lint

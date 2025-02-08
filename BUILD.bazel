@@ -1,0 +1,13 @@
+load("@gazelle//:def.bzl", "gazelle")
+load("@rules_go//go:def.bzl", "nogo", "go_library")
+
+# The comment below is part of the syntax, do not delete it:
+# gazelle:prefix github.com/Sengoku11/bazel-monorepo
+gazelle(name = "gazelle")
+
+nogo(
+    name = "my_nogo",
+
+    visibility = ["//visibility:public"], # must have public visibility
+)
+
