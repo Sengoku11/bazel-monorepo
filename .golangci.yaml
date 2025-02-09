@@ -22,34 +22,12 @@ issues:
   exclude-use-default: false
 
 linters:
-  # Enable all available linters.
   enable-all: true
-  # Disable linters that are deprecated or not needed.
   disable:
-    - structcheck      # Deprecated; replaced by unused.
-    - varcheck         # Deprecated; replaced by unused.
-    - deadcode         # Deprecated; replaced by unused.
-    - scopelint        # Deprecated.
-    - ifshort          # Deprecated.
-    - exhaustivestruct # Deprecated.
-    - interfacer       # Deprecated.
-    - maligned         # Deprecated; use govet's fieldalignment instead.
-    - nosnakecase      # Deprecated; use revive's var-naming instead.
-    - golint           # Deprecated; use revive instead.
-    - gomodguard       # Causes errors if no go.mod is in the working directory.
+    - exportloopref
+
 
 linters-settings:
   govet:
     # Enable shadow checking (replacing the deprecated check-shadowing).
     shadow: true
-
-output:
-  # Although output.format is deprecated, some versions still require it.
-  format: colored-line-number
-  # The new key for specifying output format.
-  formats:
-    - type: colored-line-number
-
-cache:
-  enabled: true
-  dir: ~/.cache/golangci-lint
